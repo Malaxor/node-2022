@@ -3,6 +3,9 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const publicDirectoryPath = path.join(__dirname, 'public');
