@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 
-// view engine
+// dynamic template initialization
 app.set('view engine', 'pug');
 app.set('views', 'views');
 // body parser

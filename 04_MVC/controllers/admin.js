@@ -16,15 +16,12 @@ exports.postAddProduct = (req, res) => {
   res.redirect('/');
 }
 
-exports.getProducts = (req, res) => {
+exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
-    res.render('shop/product-list', { 
-      pageTitle: 'Shop',
-      path: '/',
-      products,
-      hasProducts: products.length > 0,
-      activeShop: true,
-      productCSS: true
+    res.render('admin/products', { 
+      pageTitle: 'Admin Products',
+      path: '/admin/products',
+      products
     });
   });
 }

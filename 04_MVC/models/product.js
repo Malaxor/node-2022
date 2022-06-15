@@ -4,10 +4,11 @@ const path = require('path');
 const p = path.join(path.dirname(require.main.filename), 'data', 'products.json');
 const getFileContent = (cb) => {
   fs.readFile(p, (err, fileContent) => {
-    if (err) {
-      return cb([]);
+    try {
+      cb(JSON.parse(fileContent));
+    } catch (err) {
+      cb([]);
     }
-    cb(JSON.parse(fileContent));
   });
 }
 
