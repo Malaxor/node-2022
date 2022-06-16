@@ -31,4 +31,9 @@ module.exports = class Product {
   static fetchAll(cb) {
     getFileContent(cb);
   }
+  static findById(id, cb) {
+    getFileContent(products => {
+      cb(products.find(product => product.id === id));
+    });
+  }
 }
