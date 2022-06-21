@@ -12,7 +12,11 @@ exports.getProducts = (req, res) => {
 
 exports.getProduct = (req, res, next) => {
   Product.findById(req.params.id, product => {
-    console.log(product);
+    res.render('shop/product-detail', {
+      pageTitle: product.title,
+      path: '/products',
+      product
+    });
   });
 }
 
