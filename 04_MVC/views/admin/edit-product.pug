@@ -1,22 +1,22 @@
 extends ../layouts/main-layout.pug
 
 block styles
-  link(rel="stylesheet", href='/css/product.css')
+  link(rel="stylesheet", href="/css/form.css")
+  link(rel="stylesheet", href="/css/product.css")
 
-block content
+block content  
   main
-    if products.length > 0
-      .grid
-        each product in products
-          article.card.product-item
-            header.card__header 
-              h1.product__title #{product.title}
-            .card__image
-              img(src=`${product.imageUrl}`, alt="A Book")
-            .card__content
-              h2.product__price $#{product.price}
-              p.product__description #{product.description}
-            .card__actions
-              button.btn Add to Card
-    else
-      h1 No Products 
+    form.product-form(action='/admin/add-product' method='POST')
+      .form-control
+        label(for="title") Title
+        input(type="text", name="title")#title
+      .form-control
+        label(for="imageUrl") Image URL
+        input(type="text", name="imageUrl")#imageUrl
+      .form-control
+        label(for="price") Price
+        input(type="number", step="0.01", name="price")#price
+      .form-control
+        label(for="description") Description
+        textarea(name="description", rows="5")#description
+      button.btn(type="submit") Add Product
