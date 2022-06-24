@@ -28,6 +28,13 @@ exports.getEditProduct = (req, res) => {
   });
 }
 
+exports.postEditProduct = (req, res) => {
+  const { productId: id, ...rest } = req.body;
+  const updatedProduct = new Product({ id, ...rest });
+  updatedProduct.save();
+  res.redirect('/admin/products');
+}
+
 exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
     res.render('admin/products', { 
