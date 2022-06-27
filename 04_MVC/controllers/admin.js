@@ -44,3 +44,8 @@ exports.getProducts = (req, res, next) => {
     });
   });
 }
+
+exports.deleteProduct = (req, res, next) => {
+  Product.deleteById(req.body.productId);
+  res.redirect('/admin/products')
+}

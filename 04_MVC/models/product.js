@@ -48,4 +48,10 @@ module.exports = class Product {
       cb(products.find(product => product.id === id));
     });
   }
+  static deleteById(id) {
+    getFileContent(products => {
+      const filteredProducts = products.filter(product => product.id !== id);
+      fs.writeFileSync(p, JSON.stringify(filteredProducts));   
+    });
+  }
 }
