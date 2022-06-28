@@ -39,4 +39,11 @@ module.exports = class Cart {
     updatedCart.totalPrice -= parseFloat(price) * removedProduct.qty;
     fs.writeFileSync(p, JSON.stringify(updatedCart));
   }
+  static getCart(cb) {
+    try {
+      cb(JSON.parse(fs.readFileSync(p)));
+    } catch (error) {
+      cb(null);
+    }
+  }
 }
