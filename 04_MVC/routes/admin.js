@@ -5,15 +5,23 @@ const {
   getEditProduct, 
   getProducts,
   postEditProduct,
-  deleteProduct
+  postDeleteProduct
 } = require('../controllers/admin');
 
-router.route('/add-product').get(getAddProduct).post(postAddProduct);
+router.route('/add-product')
+  .get(getAddProduct)
+  .post(postAddProduct);
 
-router.route('/edit-product/:productId').get(getEditProduct);
-router.route('/edit-product').post(postEditProduct);
+router.route('/edit-product/:productId')
+  .get(getEditProduct);
 
-router.route('/products').get(getProducts);
-router.route('/delete-product').post(deleteProduct);
+router.route('/edit-product')
+  .post(postEditProduct);
+
+router.route('/products')
+  .get(getProducts);
+
+router.route('/delete-product')
+  .post(postDeleteProduct);
 
 module.exports = router;

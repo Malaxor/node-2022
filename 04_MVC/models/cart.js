@@ -29,6 +29,14 @@ module.exports = class Cart {
       cart.products = [...cart.products, { id, qty: 1 }];
     }
     cart.totalPrice += parseFloat(price);
-    fs.writeFileSync(p, JSON.stringify(cart))
+    fs.writeFileSync(p, JSON.stringify(cart));
+  }
+  static deleteProduct(id, price) {
+    const cart = loadFileContent();
+    const updatedCart = { ...cart };
+    const existingProductIndex = updatedCart.products.findIndex(product => product.id === id);
+    const [ removedProduct ] = updatedCart.products.splice(existingProductIndex, 1);
+    updatedCart.totalPrice -= parseFloat(price) * removedProduct.qty;
+    fs.writeFileSync(p, JSON.stringify(updatedCart));
   }
 }

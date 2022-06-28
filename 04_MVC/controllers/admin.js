@@ -1,4 +1,5 @@
 const Product = require('../models/product');
+const Cart = require('../models/cart');
 
 exports.getAddProduct = (req, res) => {
   res.render('admin/edit-product', { 
@@ -22,7 +23,7 @@ exports.getEditProduct = (req, res) => {
     res.render('admin/edit-product', { 
       pageTitle: 'Edit Product',
       path: '/admin/edit-product',
-      editing: Boolean(req.query.edit),
+      editing: req.query.edit,
       product
     });
   });
@@ -45,7 +46,9 @@ exports.getProducts = (req, res, next) => {
   });
 }
 
-exports.deleteProduct = (req, res, next) => {
-  Product.deleteById(req.body.productId);
+exports.postDeleteProduct = (req, res, next) => {
+  const { productId, price } = req.body;
+  Product.deleteById(productId);
+  Cart.deleteProduct(productId, price);
   res.redirect('/admin/products')
 }
