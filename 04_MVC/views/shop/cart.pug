@@ -1,13 +1,18 @@
 extends ../layouts/main-layout.pug
 
 block styles
-  link(rel="stylesheet", href='/css/product.css')
+  link(rel="stylesheet", href='/css/main.css')
 
 block content
   main
     if cart.length
       ul
         each item in cart
-          li #{item.product.title} (#{item.qty})
+          li 
+            p #{item.product.title} (#{item.qty})
+            form(action="/cart-delete-item" method="POST")
+              button(type="submit").btn Delete
+              input(type="hidden", name='productId' value=`${item.product.id}`)
+              input(type="hidden", name='productPrice' value=`${item.product.price}`)
     else
       h1 No Products in Cart
