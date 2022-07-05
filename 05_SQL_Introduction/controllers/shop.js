@@ -24,13 +24,15 @@ exports.getProduct = (req, res, next) => {
 }
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll((products) => {
+  Product.fetchAll()
+  .then(([rows, fieldData]) => {
     res.render('shop/index', { 
-      pageTitle: 'Shop',
-      path: '/',
-      products
+      pageTitle: 'All Products',
+      path: '/products',
+      products: rows
     });
-  });
+  })
+  .catch(err => console.error(err));
 }
 
 exports.getCart = (req, res, next) => {
