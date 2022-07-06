@@ -3,7 +3,7 @@ const sequelize= require('../utils/db');
 
 const Product = sequelize.define('product', {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true
