@@ -16,7 +16,8 @@ exports.postAddProduct = (req, res) => {
 }
 
 exports.getEditProduct = (req, res) => {
-  Product.findById(req.params.productId, product =>  {
+  Product.findByPk(req.params.productId)
+  .then(product =>  {
     if (!product) {
       return res.redirect('/');
     }
@@ -26,7 +27,8 @@ exports.getEditProduct = (req, res) => {
       editing: req.query.edit,
       product
     });
-  });
+  })
+  .catch(err => console.error(err));
 }
 
 exports.postEditProduct = (req, res) => {
