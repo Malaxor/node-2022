@@ -16,10 +16,10 @@ app.use('/admin', require('./routes/admin'));
 app.use(require('./routes/shop'));
 
 app.use(require('./controllers/error'));
-// create tables for the models
+
 sequelize
   .sync()
-  .then(res => console.log(res))
+  .then()
   .catch(err => console.log(err))
   
 app.listen(3000, console.log('server listening on port 3000'));

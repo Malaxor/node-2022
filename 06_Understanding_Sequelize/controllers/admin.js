@@ -10,10 +10,9 @@ exports.getAddProduct = (req, res) => {
 }
 
 exports.postAddProduct = (req, res) => {
-  const product = new Product({ ...req.body });
-  product.save()
+  Product.create({ ...req.body })
   .then(() => res.redirect('/'))
-  .catch(err => console.log(err));
+  .catch(err => console.error(err));
 }
 
 exports.getEditProduct = (req, res) => {
